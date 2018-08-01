@@ -52,5 +52,13 @@
 @include motion-ui-animations;
 
 .spell.card{
-    
+    .title{
+        text-align: center;
+        width:100%;
+    }
+}
+svg{
+    vertical-align: text-top;
+    margin-right: 3px;
+    margin-left: 4px;
 }
