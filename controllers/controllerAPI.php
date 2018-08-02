@@ -21,9 +21,9 @@ function CallAPI($method, $url, $data = false) {
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
 
-    // Optional Authentication:
-    //curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    //curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+// Optional Authentication:
+//curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+//curl_setopt($curl, CURLOPT_USERPWD, "username:password");
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -41,8 +41,8 @@ function CallJSON($categorie) {
     return $results;
 }
 
-function drawIcon($iconToDraw){
-    switch($iconToDraw){
+function drawIcon($iconToDraw) {
+    switch ($iconToDraw) {
         case "HP":
             echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="16" height="16"><path d="M414.9 24C361.8 24 312 65.7 288 89.3 264 65.7 214.2 24 161.1 24 70.3 
                 24 16 76.9 16 165.5c0 72.6 66.8 133.3 69.2 135.4l187 180.8c8.8 8.5 22.8 8.5 31.6 0l186.7-180.2c2.7-2.7 69.5-63.5 69.5-136C560 76.9 505.7 24 414.9 24z"
@@ -59,4 +59,130 @@ function drawIcon($iconToDraw){
                 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z" style="fill: #408BC9;"></path></svg>';
             break;
     }
+}
+
+function printAbilitiesName() {
+    include 'extraData/abilityNames.php';
+    foreach ($arrayAbilities as $shorthand => $text) {
+        ?>
+        <div class="cell statname big"><?= $shorthand; ?></div>
+        <?php
+    }
+}
+
+function printAbilities($monsterStats) {
+    require_once 'extraData/abilityScoresMods.php';
+    include 'extraData/abilityNames.php';
+    foreach ($arrayAbilities as $text) {
+        ?>
+        <div class="cell"><?= "<span class='fullStat'>{$monsterStats[$text]}</span> (" . getModifier($monsterStats[$text]) . ")"; ?></div>
+        <?php
+    }
+}
+
+function printSaveThrow($monsterStats) {
+    include 'extraData/abilityNames.php';
+    $arraySaves = [];
+    foreach ($arrayAbilities as $shorthand => $text) {
+        $val = $monsterStats[$text . "_save"];
+        if (!empty($val)) {
+            $arraySaves[$shorthand] = $val;
+        }
+    }
+
+    if (!empty($arraySaves)) {
+        $string = "<p><b>Saves : </b>";
+        foreach ($arraySaves as $shorthand => $val) {
+            $string.= "<span class='statname'>$shorthand</span>(+$val), ";
+        }
+        echo trim($string, ", ") . "</p>";
+    }
+}
+
+function printSkills($monsterStats) {
+    $results = CallJSON("Skills");
+
+    foreach ($results as $key => $result) {
+        $val = $monsterStats[strtolower($result["name"])];
+        if (!empty($val)) {
+            $arraySaves[$result["name"]] = $val;
+        }
+    }
+
+    if (!empty($arraySaves)) {
+        $string = "<p><b>Skills : </b>";
+        foreach ($arraySaves as $skillName => $val) {
+            $string.= "$skillName (+$val), ";
+        }
+        echo trim($string, ", ") . "</p>";
+    }
+}
+
+function printSpecialAbilities($monsterStats) {
+    if (!empty($monsterStats["special_abilities"])) {
+        foreach ($monsterStats["special_abilities"] as $key => $ability) {
+            ?>
+            <div class="ability"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
+            <?php
+        }
+    }
+}
+
+function printActions($monsterStats) {
+    if (!empty($monsterStats["actions"])) {
+        foreach ($monsterStats["actions"] as $key => $ability) {
+            ?>
+            <div class="action"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
+            <?php
+        }
+    }
+}
+
+function printLegActions($monsterStats) {
+    if (!empty($monsterStats["legendary_actions"])) {
+        foreach ($monsterStats["legendary_actions"] as $key => $ability) {
+            ?>
+            <div class="action"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
+            <?php
+        }
+    }
+}
+
+function decimalToFraction($decimal) {
+    if ($decimal < 0 || !is_numeric($decimal)) {
+        // Negative digits need to be passed in as positive numbers
+        // and prefixed as negative once the response is imploded.
+        return false;
+    }
+    if ($decimal == 0) {
+        return [0, 0];
+    }
+
+    $tolerance = 1.e-4;
+
+    $numerator = 1;
+    $h2 = 0;
+    $denominator = 0;
+    $k2 = 1;
+    $b = 1 / $decimal;
+    do {
+        $b = 1 / $b;
+        $a = floor($b);
+        $aux = $numerator;
+        $numerator = $a * $numerator + $h2;
+        $h2 = $aux;
+        $aux = $denominator;
+        $denominator = $a * $denominator + $k2;
+        $k2 = $aux;
+        $b = $b - $a;
+    } while (abs($decimal - $numerator / $denominator) > $decimal * $tolerance);
+
+    return $numerator . "/" . $denominator;
+}
+
+function convertCR($CRVal) {
+    if ($CRVal < 1) {
+        return decimalToFraction($CRVal);
+    }
+    return $CRVal;
 }

@@ -1,5 +1,7 @@
 <?php
 
 function getModifier($abilityScore) {
-    return floor(($abilityScore - 10) / 2);
+    $mod = floor(($abilityScore - 10) / 2);
+    $mod = $mod > 0 ? "+" . strval($mod) : strval($mod);
+    return $mod;
 }
