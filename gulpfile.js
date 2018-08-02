@@ -7,10 +7,10 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function() {
-  return gulp.src('scss/app.scss')
+  return gulp.src('scss/*.scss')
     .pipe($.sass({
       includePaths: sassPaths,
-      outputStyle: 'compressed' // if css compressed **file size**
+      outputStyle: 'compact' // if css compressed **file size**
     })
       .on('error', $.sass.logError))
     .pipe($.autoprefixer({

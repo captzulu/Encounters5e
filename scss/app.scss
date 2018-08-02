@@ -51,55 +51,14 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
-.spell.card{
-    .title{
-        text-align: center;
-        width:100%;
-    }
-}
 svg{
     vertical-align: text-top;
     margin-right: 3px;
     margin-left: 4px;
+    width:16px;
+    height: 16px;
 }
 
-.statname{
-    font-weight: bold;
-    font-size: 90%;
-    &.big{
-        font-size: 110%;
-    }
-}
-
-.fullStat{
-    font-size: 75%;
-    color:#999999;
-}
-
-p{
-    margin-bottom: 0.1rem !important;
-}
-
-div.action,div.ability{
-    margin-bottom: 1rem;
-}
-
-.card-section:not(.no_header):not(.first_section){
-    border-top: 2px black solid;
-    margin:0 1rem;
-    padding: 1rem 0;
-}
-
-.card-section.no_header{
-    padding: 0 1rem;
-    padding-bottom: 1rem;
-}
-
-.section_header{
-    border-bottom: 2px black solid;
-    display: block;
-    width: 100%;
-    font-weight: bold;
-    font-size: 150%;
-    margin-bottom:1rem;
+.card-divider{
+    color:white;
 }

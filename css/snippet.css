@@ -1,0 +1,11 @@
+.card .card-divider { padding: 0.5rem; }
+
+.card .title { text-align: center; width: 100%; font-size: 1.3rem; }
+
+.card .card-section:not(.first_section) { padding-top: 0rem; }
+
+.stats_snippet .cell { font-weight: bold; font-size: 2rem; }
+
+.stats_snippet svg { width: 37%; height: auto; }
+
+.tags .label { font-size: 1rem; margin-bottom: 0.3rem; }
