@@ -52,3 +52,20 @@ div.action,div.ability{
     margin-bottom:1rem;
 }
 
+.spell,.condition{
+    text-transform: capitalize;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-style:dashed;
+    text-underline-position: under;
+}
+
+.spell{
+    color:$spellColor;
+}
+
+.condition{
+    color:$conditionColor;
+
+}
+

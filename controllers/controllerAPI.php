@@ -6,18 +6,18 @@
 function CallAPI($method, $url, $data = false) {
     $curl = curl_init();
 
-    switch($method) {
+    switch ($method) {
         case "POST":
             curl_setopt($curl, CURLOPT_POST, 1);
 
-            if($data)
+            if ($data)
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             break;
         case "PUT":
             curl_setopt($curl, CURLOPT_PUT, 1);
             break;
         default:
-            if($data)
+            if ($data)
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
 
@@ -41,8 +41,15 @@ function CallJSON($categorie) {
     return $results;
 }
 
+function getTable($table, $where = null) {
+    include "includes/connectionInfo.php";
+    $query = "Select * from $table " . (!empty($where) ? $where : "");
+    $results = $db->query($query);
+    return $results->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function drawIcon($iconToDraw) {
-    switch($iconToDraw) {
+    switch ($iconToDraw) {
         case "HP":
             echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M414.9 24C361.8 24 312 65.7 288 89.3 264 65.7 214.2 24 161.1 24 70.3 
                 24 16 76.9 16 165.5c0 72.6 66.8 133.3 69.2 135.4l187 180.8c8.8 8.5 22.8 8.5 31.6 0l186.7-180.2c2.7-2.7 69.5-63.5 69.5-136C560 76.9 505.7 24 414.9 24z"
@@ -63,7 +70,7 @@ function drawIcon($iconToDraw) {
 
 function printAbilitiesName() {
     include 'extraData/abilityNames.php';
-    foreach($arrayAbilities as $shorthand => $text) {
+    foreach ($arrayAbilities as $shorthand => $text) {
         ?>
         <div class="cell statname big"><?= $shorthand; ?></div>
         <?php
@@ -73,7 +80,7 @@ function printAbilitiesName() {
 function printAbilities($monsterStats) {
     require_once 'extraData/abilityScoresMods.php';
     include 'extraData/abilityNames.php';
-    foreach($arrayAbilities as $text) {
+    foreach ($arrayAbilities as $text) {
         ?>
         <div class="cell"><?= "<span class='fullStat'>{$monsterStats[$text]}</span> (" . getModifier($monsterStats[$text]) . ")"; ?></div>
         <?php
@@ -83,16 +90,16 @@ function printAbilities($monsterStats) {
 function printSaveThrow($monsterStats) {
     include 'extraData/abilityNames.php';
     $arraySaves = [];
-    foreach($arrayAbilities as $shorthand => $text) {
+    foreach ($arrayAbilities as $shorthand => $text) {
         $val = $monsterStats[$text . "_save"];
-        if(!empty($val)) {
+        if (!empty($val)) {
             $arraySaves[$shorthand] = $val;
         }
     }
 
-    if(!empty($arraySaves)) {
+    if (!empty($arraySaves)) {
         $string = "<p><b>Saves : </b>";
-        foreach($arraySaves as $shorthand => $val) {
+        foreach ($arraySaves as $shorthand => $val) {
             $string .= "<span class='statname'>$shorthand</span>(+$val), ";
         }
         echo trim($string, ", ") . "</p>";
@@ -102,16 +109,16 @@ function printSaveThrow($monsterStats) {
 function printSkills($monsterStats) {
     $results = CallJSON("Skills");
 
-    foreach($results as $key => $result) {
+    foreach ($results as $key => $result) {
         $val = $monsterStats[strtolower($result["name"])];
-        if(!empty($val)) {
+        if (!empty($val)) {
             $arraySaves[$result["name"]] = $val;
         }
     }
 
-    if(!empty($arraySaves)) {
+    if (!empty($arraySaves)) {
         $string = "<p><b>Skills : </b>";
-        foreach($arraySaves as $skillName => $val) {
+        foreach ($arraySaves as $skillName => $val) {
             $string .= "$skillName (+$val), ";
         }
         echo trim($string, ", ") . "</p>";
@@ -119,9 +126,9 @@ function printSkills($monsterStats) {
 }
 
 function printSpecialAbilities($monsterStats) {
-    if(!empty($monsterStats["special_abilities"])) {
-        foreach($monsterStats["special_abilities"] as $key => $ability) {
-            if(strpos($ability["name"], "Spellcasting") !== false) {
+    if (!empty($monsterStats["special_abilities"])) {
+        foreach ($monsterStats["special_abilities"] as $key => $ability) {
+            if (strpos($ability["name"], "Spellcasting") !== false) {
                 $ability["desc"] = markSpells($ability["desc"]);
             }
             ?>
@@ -132,8 +139,8 @@ function printSpecialAbilities($monsterStats) {
 }
 
 function printActions($monsterStats) {
-    if(!empty($monsterStats["actions"])) {
-        foreach($monsterStats["actions"] as $key => $ability) {
+    if (!empty($monsterStats["actions"])) {
+        foreach ($monsterStats["actions"] as $key => $ability) {
             ?>
             <div class="action"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
             <?php
@@ -142,8 +149,8 @@ function printActions($monsterStats) {
 }
 
 function printLegActions($monsterStats) {
-    if(!empty($monsterStats["legendary_actions"])) {
-        foreach($monsterStats["legendary_actions"] as $key => $ability) {
+    if (!empty($monsterStats["legendary_actions"])) {
+        foreach ($monsterStats["legendary_actions"] as $key => $ability) {
             ?>
             <div class="action"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
             <?php
@@ -152,12 +159,12 @@ function printLegActions($monsterStats) {
 }
 
 function decimalToFraction($decimal) {
-    if($decimal < 0 || !is_numeric($decimal)) {
+    if ($decimal < 0 || !is_numeric($decimal)) {
         // Negative digits need to be passed in as positive numbers
         // and prefixed as negative once the response is imploded.
         return false;
     }
-    if($decimal == 0) {
+    if ($decimal == 0) {
         return [0, 0];
     }
 
@@ -178,13 +185,13 @@ function decimalToFraction($decimal) {
         $denominator = $a * $denominator + $k2;
         $k2 = $aux;
         $b = $b - $a;
-    } while(abs($decimal - $numerator / $denominator) > $decimal * $tolerance);
+    } while (abs($decimal - $numerator / $denominator) > $decimal * $tolerance);
 
     return $numerator . "/" . $denominator;
 }
 
 function convertCR($CRVal) {
-    if($CRVal < 1 && $CRVal > 0) {
+    if ($CRVal < 1 && $CRVal > 0) {
         return decimalToFraction($CRVal);
     }
     return $CRVal;

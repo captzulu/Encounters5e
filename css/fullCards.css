@@ -17,3 +17,9 @@ div.action, div.ability { margin-bottom: 1rem; }
 .card-section.no_header { padding: 0 1rem; padding-bottom: 1rem; }
 
 .section_header { border-bottom: 2px black solid; display: block; width: 100%; font-weight: bold; font-size: 150%; margin-bottom: 1rem; }
+
+.spell, .condition { text-transform: capitalize; font-weight: bold; text-decoration: underline; -webkit-text-decoration-style: dashed; text-decoration-style: dashed; text-underline-position: under; }
+
+.spell { color: #008b8b; }
+
+.condition { color: #990000; }

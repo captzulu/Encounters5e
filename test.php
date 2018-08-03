@@ -9,7 +9,7 @@ function moreCSS() {
 include 'controllers/controllerAPI.php';
 include_once 'includes/header.php';
 require 'controllers/controllerStringParser.php';
-$results = CallJSON("Monsters");
+$results = getTable("monsters");
 printConditionsDropDowns();
 //var_dump($results);
 ?>
@@ -19,10 +19,11 @@ printConditionsDropDowns();
         <ul class="pagination"></ul>
         <div class="grid-x grid-margin-x small-up-2 medium-up-4 large-up-5 list">
             <?php
-            foreach($results as $key => $result) {
+            foreach ($results as $key => $result) {
+                $result["content"] = json_decode(stripslashes($result["content"]), true);
                 ?>
                 <div class="cell">
-                <?php require "templates/monster-full.php"; ?>
+                    <?php require "templates/monster-full.php"; ?>
                 </div>
                 <?php
             }
@@ -43,7 +44,7 @@ printConditionsDropDowns();
 
         var monsterList = new List('monsterList', options);
         monsterList.on("updated", function () {
-            Foundation.reInit($("[dropdownLink]"));
+            Foundation.reInit($(".dropdownLink"));
         });
 
     });

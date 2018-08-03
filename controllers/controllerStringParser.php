@@ -20,28 +20,28 @@ function dropDownConditions($string) {
     $results = CallJSON("Conditions");
     $arrayConditions = [];
     $arrayConditionsDesc = [];
-    foreach($results as $key => $condition) {
+    foreach ($results as $key => $condition) {
         $arrayConditions[] = "(" . strtolower($condition["name"]) . ")";
         $finalDesc = "";
-        foreach($condition["desc"] as $desc) {
+        foreach ($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
-        $arrayConditionsDesc[] = "<a dropdownLink data-toggle='cond_" . strtolower($condition["name"]) . "'>{$condition["name"]}</a>";
+        $arrayConditionsDesc[] = "<a class='condition' data-toggle='cond_" . strtolower($condition["name"]) . "'>{$condition["name"]}</a>";
     }
-    $GLOBALS["counter"] = $GLOBALS["counter"] + 1;
     //var_dump($arrayConditions);
     return preg_replace($arrayConditions, $arrayConditionsDesc, $string);
 }
 
 function markSpells($string) {
+    include "includes/connectionInfo.php";
     //first check if the string contains the word "Spellcasting" so we dont search for spells in a useless string
-        $results = CallJSON("Spells");
-        $arraySpells = [];
-        foreach($results as $key => $spell) {
-            $arraySpells[] = "(" . strtolower($spell["name"]) . ")";
-        }
-        //var_dump($arrayConditions);
-        return preg_replace($arraySpells, "<a spell>$0</a>", $string);
+    $results = CallJSON("Spells");
+    $arraySpells = [];
+    foreach ($results as $key => $spell) {
+        $arraySpells[] = "(" . strtolower($spell["name"]) . ")";
+    }
+    //var_dump($arrayConditions);
+    return preg_replace($arraySpells, "<a class='spell'>$0</a>", $string);
 }
 
 function boldInDesc($string) {
@@ -55,9 +55,9 @@ function boldInDesc($string) {
 
 function printConditionsDropDowns() {
     $results = CallJSON("Conditions");
-    foreach($results as $key => $condition) {
+    foreach ($results as $key => $condition) {
         $finalDesc = "";
-        foreach($condition["desc"] as $desc) {
+        foreach ($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
         echo "<div class='dropdown-pane' id='cond_" . strtolower($condition["name"]) . "' data-dropdown data-close-on-click='true' data-position='bottom' data-alignment='center'>
