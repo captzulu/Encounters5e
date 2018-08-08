@@ -9,11 +9,11 @@ function moreCSS() {
 include 'controllers/controllerAPI.php';
 
 include_once 'includes/header.php';
-$results = getTable("monster");
+$results = getTable("spell", null, "level, name");
 //var_dump($results);
 ?>
 <div class="grid-container fluid" >
-    <div id="monsterList">
+    <div id="spellList">
         <div class="searchDiv">
             <input type="text" class="search" placeholder="Filter by Name, CR, Size or Type"/>
             <ul class="pagination"></ul>
@@ -24,7 +24,7 @@ $results = getTable("monster");
                 $result["content"] = json_decode(stripslashes($result["content"]), true);
                 ?>
                 <div class="cell">
-                    <?php require "templates/monster-snippet.php"; ?>
+                    <?php require "templates/spell-snippet.php"; ?>
                 </div>
                 <?php
             }
@@ -38,12 +38,12 @@ $results = getTable("monster");
 <script >
     $(function () {
         var options = {
-            valueNames: ['name', 'challenge_rating', 'size', 'type'],
+            valueNames: ['name', 'class', 'size', 'type'],
             page: 25,
             pagination: [{paginationClass: "pagination", outerWindow: 1, innerWindow: 1}, ]
         };
 
-        var monsterList = new List('monsterList', options);
+        var spellList = new List('spellList', options);
     });
 
 </script>

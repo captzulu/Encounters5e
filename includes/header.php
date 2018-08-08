@@ -8,7 +8,7 @@
         <?= isset($PageDesc) ? "<meta name='description' content='$PageDesc'>" : ""; ?>
         <link rel = "stylesheet" href = "css/app.css" />
         <?php
-        if(function_exists('moreCSS')) {
+        if (function_exists('moreCSS')) {
             moreCSS();
         }
         ?>
@@ -16,4 +16,7 @@
         <script src="node_modules/what-input/dist/what-input.js"></script>
         <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
     </head>
-    <body>
+    <body class="background">
+        <?php
+        include 'includes/menu.php';
+        

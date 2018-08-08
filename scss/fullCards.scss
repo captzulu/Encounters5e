@@ -1,4 +1,23 @@
 @import "settings";
+.singleFullCard .card{
+    resize: both;
+    overflow: auto;
+    min-width: 300px;
+    min-height: 400px;
+    margin:0;
+    .card-divider{
+        display:block;
+    }
+}
+
+.resize_marker{
+    font-size: 0.9rem;
+    color:$conditionColor;
+    text-align: right;
+    padding-right: 15px;
+    line-height: 1;
+}
+
 .card{
     .title{
         text-align: center;

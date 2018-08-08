@@ -2,8 +2,8 @@
 $idMonster = $result["idMonster"];
 $result = $result["content"];
 ?>
-<div class="card">
-    <div class="card-divider ">
+<div class="card fullCard">
+    <div class="card-divider">
         <h4 class="title name"><?= $result["name"]; ?></h4>
     </div>
     <div class="card-section first_section">
@@ -79,6 +79,7 @@ $result = $result["content"];
             <?php printLegActions($result) ?>
         </div>
     <?php } ?>
+    <span class="resize_marker">Resize →</span>
 </div>
 
 

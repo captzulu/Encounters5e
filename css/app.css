@@ -2582,6 +2582,30 @@ a.thumbnail image { box-shadow: none; }
 
 .long-delay { animation-delay: 700ms !important; }
 
+.top-bar { background-color: initial; padding: 0; padding-bottom: 2rem; }
+
+ul.menu { background-color: #222222; }
+
+ul.menu a { color: white; }
+
+ul.menu a:hover { text-decoration: underline; }
+
+ul.menu li:not(.menu-text) { padding: 0.7rem 0.5rem; }
+
+.searchDiv { margin-bottom: 1rem; }
+
+.searchDiv .pagination, .searchDiv .search { margin-bottom: 0; }
+
+.searchDiv .page { background-color: #333333; color: white; border-radius: 3px; }
+
+.searchDiv .page:hover { background-color: #575656; }
+
+.background { padding-bottom: 1rem; background-color: #e9f4fb; background-image: linear-gradient(#a6d1f0 2px, transparent 2px), linear-gradient(90deg, #a6d1f0 2px, transparent 2px); background-size: 50px 50px, 50px 50px, 20px 20px, 20px 20px; background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; }
+
 svg { vertical-align: text-top; margin-right: 3px; margin-left: 4px; width: 16px; height: 16px; }
 
 .card-divider { color: white; }
+
+.card { border: 1px solid #cacaca; border-radius: 5px; }
+
+.tags > * { border-radius: 5px; }

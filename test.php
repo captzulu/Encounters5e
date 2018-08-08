@@ -9,7 +9,7 @@ function moreCSS() {
 include 'controllers/controllerAPI.php';
 include_once 'includes/header.php';
 require 'controllers/controllerStringParser.php';
-$results = getTable("monsters");
+$results = getTable("monster");
 printConditionsDropDowns();
 //var_dump($results);
 ?>

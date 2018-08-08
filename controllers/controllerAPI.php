@@ -41,11 +41,14 @@ function CallJSON($categorie) {
     return $results;
 }
 
-function getTable($table, $where = null) {
+function getTable($table, $id = null, $orderBy = null) {
     include "includes/connectionInfo.php";
-    $query = "Select * from $table " . (!empty($where) ? $where : "");
-    $results = $db->query($query);
-    return $results->fetchAll(PDO::FETCH_ASSOC);
+    $query = "Select * from $table " . (!empty($id) ? "where id$table=:id " : "") . (!empty($orderBy) ? "Order by $orderBy " : "");
+    //var_dump($query);
+    $pdo = $db->prepare($query);
+    $params = !empty($id) ? [':id' => $id] : [];
+    $pdo->execute($params);
+    return $pdo->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function drawIcon($iconToDraw) {
