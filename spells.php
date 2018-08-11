@@ -18,7 +18,7 @@ $results = getTable("spell", null, "level, name");
             <input type="text" class="search" placeholder="Filter by Name, CR, Size or Type"/>
             <ul class="pagination"></ul>
         </div>
-        <div class="grid-x grid-margin-x small-up-2 medium-up-4 large-up-6 list">
+        <div class="grid-x grid-margin-x small-up-1 medium-up-3 large-up-5 list">
             <?php
             foreach ($results as $key => $result) {
                 $result["content"] = json_decode(stripslashes($result["content"]), true);
@@ -38,7 +38,7 @@ $results = getTable("spell", null, "level, name");
 <script >
     $(function () {
         var options = {
-            valueNames: ['name', 'class', 'size', 'type'],
+            valueNames: ['name', 'class'],
             page: 25,
             pagination: [{paginationClass: "pagination", outerWindow: 1, innerWindow: 1}, ]
         };

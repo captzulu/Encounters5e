@@ -91,6 +91,10 @@ svg{
 
 .card-divider{
     color:white;
+    display:block;
+    .title{
+        margin:0;
+    }
 }
 .card{
     border: 1px solid $medium-gray;
@@ -100,3 +104,17 @@ svg{
 .tags>*{
     border-radius: 5px;
 }
+
+.italic_bold{
+    font-weight: bold;
+    font-style: italic;
+}
+
+@media screen and (max-width: 32.4375em){
+    .reveal {
+        height: auto;
+        min-height: auto;
+    }
+}
+
+
