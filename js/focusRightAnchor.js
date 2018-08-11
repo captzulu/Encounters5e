@@ -5,7 +5,7 @@ var revealAnchors = {
         });
         $(".reveal").on("closed.zf.reveal", function () {
             var id = $(this).attr("id");
-            var anchor = $(".condition[data-open='" + id + "']");
+            var anchor = $(".condition[data-open='" + id + "'].openAnchor");
             anchor.focus().removeClass("openAnchor");
         })
     }
