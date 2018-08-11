@@ -8,7 +8,7 @@ function moreCSS() {
 
 function moreJS() {
     ?>
-    <!--<script src="node_modules/foundation-sites/js/foundation.dropdown.js" type="text/javascript"></script>-->
+    <script src="js/focusRightAnchor.js" type="text/javascript"></script>
     <?php
 }
 
