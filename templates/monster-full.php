@@ -78,8 +78,10 @@ $result = $result["content"];
             <span class="section_header">Legendary Actions</span>
             <?php printLegActions($result) ?>
         </div>
-    <?php } ?>
-    <span class="resize_marker">Resize →</span>
+    <?php
+    }
+    printConditionsDropDowns();
+    ?>
 </div>
 
 

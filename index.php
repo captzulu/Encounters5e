@@ -18,7 +18,7 @@ $results = getTable("monster");
             <input type="text" class="search" placeholder="Filter by Name, CR, Size or Type"/>
             <ul class="pagination"></ul>
         </div>
-        <div class="grid-x grid-margin-x small-up-2 medium-up-4 large-up-6 list">
+        <div class="grid-x grid-margin-x small-up-1 small_med-up-2 medium-up-3 xlarge-up-5 xxlarge-up-6 list">
             <?php
             foreach ($results as $key => $result) {
                 $result["content"] = json_decode(stripslashes($result["content"]), true);

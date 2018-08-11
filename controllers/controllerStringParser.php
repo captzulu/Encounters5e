@@ -26,7 +26,7 @@ function dropDownConditions($string) {
         foreach ($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
-        $arrayConditionsDesc[] = "<a class='condition' data-toggle='cond_" . strtolower($condition["name"]) . "'>{$condition["name"]}</a>";
+        $arrayConditionsDesc[] = "<a class='condition' data-open='cond_" . strtolower($condition["name"]) . "'>{$condition["name"]}</a>";
     }
     //var_dump($arrayConditions);
     return preg_replace($arrayConditions, $arrayConditionsDesc, $string);
@@ -60,7 +60,11 @@ function printConditionsDropDowns() {
         foreach ($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
-        echo "<div class='dropdown-pane' id='cond_" . strtolower($condition["name"]) . "' data-dropdown data-close-on-click='true' data-position='bottom' data-alignment='center'>
-                <h5>{$condition["name"]}</h5><ul>$finalDesc</ul></div>";
+        echo "<div class='reveal' id='cond_" . strtolower($condition["name"]) . "' data-reveal>
+                <h5>{$condition["name"]}</h5><ul>$finalDesc</ul>
+                <button class='close-button' data-close aria-label='Close modal' type='button'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>";
     }
 }

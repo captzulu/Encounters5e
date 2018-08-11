@@ -1,9 +1,9 @@
-<script src="js/app.js"></script>
 <?php
-if(function_exists('moreJS')) {
+if (function_exists('moreJS')) {
     moreJS();
 }
 ?>
+<script src="js/app.js"></script>
 </div>
 </body>
 </html> 
