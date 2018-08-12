@@ -155,10 +155,41 @@ function printLegActions($monsterStats) {
     if (!empty($monsterStats["legendary_actions"])) {
         foreach ($monsterStats["legendary_actions"] as $key => $ability) {
             ?>
-            <div class="action"><b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?></div>
+            <div class="action">
+                <b><?= $ability["name"] ?></b> <?= boldInDesc($ability["desc"]) ?>
+            </div> 
             <?php
         }
     }
+}
+
+function printSpellDescription($spellText) {
+    $inAList = false;
+    $inAParagraph = false;
+    foreach ($spellText["desc"] as $key => $desc) {
+        if ($desc[0] === "-") {
+            if (!$inAList) {
+                echo "<ul>";
+                $inAList = true;
+            }
+            ?>
+            <li><?= boldInDesc(trim($desc, "- ")); ?></li>
+            <?php
+            if ($inAList) {
+                echo "</ul>";
+                $inAList = false;
+            }
+        } else {
+            //if the description line is only a word or 2 with a dot at the end, it should be boldened and italisized 
+            if (count(explode(" ", $desc)) < 3 && substr($desc, -1) == ".") {
+                echo "<p><span class='italic_bold'>" . boldInDesc($desc) . " </span>";
+                $inAParagraph = true;
+            } else {
+                echo ($inAParagraph ? "" : "<p>") . boldInDesc($desc) . "</p>";
+            }
+        }
+    }
+    echo (isset($spellText["higher_level"]) ? "<p><span class='italic_bold'>At Higher Levels. </span>" . boldInDesc($spellText["higher_level"][0]) : "");
 }
 
 function decimalToFraction($decimal) {

@@ -15,32 +15,7 @@ $result = $result["content"];
     </div>
     <div class="card-section">
         <?php
-        $inAList = false;
-        $inAParagraph = false;
-        foreach ($result["desc"] as $key => $desc) {
-            if ($desc[0] === "-") {
-                if (!$inAList) {
-                    echo "<ul>";
-                    $inAList = true;
-                }
-                ?>
-                <li><?= trim($desc, "- "); ?></li>
-                <?php
-                if ($inAList) {
-                    echo "</ul>";
-                    $inAList = false;
-                }
-            } else {
-                //if the description line is only a word or 2 with a dot at the end, it should be boldened and italisized 
-                if (count(explode(" ", $desc)) < 3 && substr($desc, -1) == ".") {
-                    echo "<p><span class='italic_bold'>$desc </span>";
-                    $inAParagraph = true;
-                } else {
-                    echo ($inAParagraph ? "" : "<p>") . "$desc</p>";
-                }
-            }
-        }
-        echo (isset($result["higher_level"]) ? "<p><span class='italic_bold'>At Higher Levels. </span>" . $result["higher_level"][0] : "");
+        printSpellDescription($result);
         ?>
     </div>
 </div>

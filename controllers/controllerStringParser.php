@@ -1,7 +1,7 @@
 <?php
 
 function boldDamageDices($string) {
-    return preg_replace("(\([0-9]+d[0-9]+ (\+|\-|\—) [0-9]+\)?|\(?[0-9]+d[0-9]+\))", "<b>$0</b>", $string);
+    return preg_replace("(\([0-9]+d[0-9]+ (\+|\-|\—) [0-9]+\)?|\(?[0-9]*d[0-9]+\)?)", "<b>$0</b>", $string);
 }
 
 function boldDCs($string) {
@@ -14,6 +14,10 @@ function boldActionType($string) {
 
 function boldToHit($string) {
     return preg_replace("(\+[0-9]+ to hit)", "<b style='text-transform:capitalize;'>$0</b>", $string);
+}
+
+function boldLvl($string) {
+    return preg_replace("([0-9]+(th|nd|rd|rst) level)", "<b style='text-transform:capitalize;'>$0</b>", $string);
 }
 
 function dropDownConditions($string) {
@@ -49,6 +53,7 @@ function boldInDesc($string) {
     $string = boldDCs($string);
     $string = boldActionType($string);
     $string = boldToHit($string);
+    $string = boldLvl($string);
     $string = dropDownConditions($string);
     return $string;
 }
