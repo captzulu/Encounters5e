@@ -65,6 +65,34 @@
         &:hover{
             background-color: $charcoal-light;
         }
+
+    }
+    .pagination li{
+        display:inline-block !important;
+        &.disabled{
+            cursor: initial;
+            a{
+                cursor: default;
+                &:hover{
+                    background-color: $charcoal;
+                }
+            }
+        }    
+    }
+    @include breakpoint(medium down) {
+        .search{
+            height: 3rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+        }
+        li{
+            margin-right: 0.3625rem;
+            font-size:1.1rem;
+            font-weight: bold;
+            .page{
+                padding: 0.5875rem 1.2rem;
+            }
+        }
     }
 }
 
@@ -110,7 +138,7 @@ svg{
     font-style: italic;
 }
 
-@media screen and (max-width: 32.4375em){
+@include breakpoint(medium down) {
     .reveal {
         height: auto;
         min-height: auto;

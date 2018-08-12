@@ -16,4 +16,41 @@ ul.menu {
     li:not(.menu-text ){
         padding:0.7rem 0.5rem;
     }
+
+}
+
+@include breakpoint(medium down) {
+    #siteTitle{
+        padding-top: 1rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    .menu{
+        a{
+            padding:0;
+        }
+    }
+    .menuMobile{
+        font-size: 1.4rem;
+        text-align: center;
+        li{
+            padding:0 !important;
+        }
+        a{
+            padding: 0.7rem 0.5rem;
+        }
+    }
+    #menuMobileReveal{
+        background-color:$charcoal-dark;
+        border:1px white solid;
+        top:86px !important;
+        width: 100%;
+        .close-button{
+            color:white;
+            z-index: 1;
+            padding:0.5rem 1rem;
+            right: 0;
+            top:0;
+        }
+    }
 }

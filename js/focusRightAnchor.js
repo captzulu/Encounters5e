@@ -13,5 +13,3 @@ var revealAnchors = {
 $(function () {
     revealAnchors.init();
 });
-
-

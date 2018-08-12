@@ -4660,6 +4660,14 @@ ul.menu a:hover { text-decoration: underline; }
 
 ul.menu li:not(.menu-text) { padding: 0.7rem 0.5rem; }
 
+@media screen and (max-width: 63.9375em) { #siteTitle { padding-top: 1rem; font-size: 1.8rem; font-weight: bold; }
+  .menu a { padding: 0; }
+  .menuMobile { font-size: 1.4rem; text-align: center; }
+  .menuMobile li { padding: 0 !important; }
+  .menuMobile a { padding: 0.7rem 0.5rem; }
+  #menuMobileReveal { background-color: #222222; border: 1px white solid; top: 86px !important; width: 100%; }
+  #menuMobileReveal .close-button { color: white; z-index: 1; padding: 0.5rem 1rem; right: 0; top: 0; } }
+
 .searchDiv { margin-bottom: 1rem; }
 
 .searchDiv .pagination, .searchDiv .search { margin-bottom: 0; }
@@ -4667,6 +4675,18 @@ ul.menu li:not(.menu-text) { padding: 0.7rem 0.5rem; }
 .searchDiv .page { background-color: #333333; color: white; border-radius: 3px; }
 
 .searchDiv .page:hover { background-color: #575656; }
+
+.searchDiv .pagination li { display: inline-block !important; }
+
+.searchDiv .pagination li.disabled { cursor: initial; }
+
+.searchDiv .pagination li.disabled a { cursor: default; }
+
+.searchDiv .pagination li.disabled a:hover { background-color: #333333; }
+
+@media screen and (max-width: 63.9375em) { .searchDiv .search { height: 3rem; margin-bottom: 0.4rem; font-size: 1.2rem; }
+  .searchDiv li { margin-right: 0.3625rem; font-size: 1.1rem; font-weight: bold; }
+  .searchDiv li .page { padding: 0.5875rem 1.2rem; } }
 
 .background { padding-bottom: 1rem; background-color: #e9f4fb; background-image: linear-gradient(#a6d1f0 2px, transparent 2px), linear-gradient(90deg, #a6d1f0 2px, transparent 2px); background-size: 50px 50px, 50px 50px, 20px 20px, 20px 20px; background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px; }
 
@@ -4682,4 +4702,4 @@ svg { vertical-align: text-top; margin-right: 3px; margin-left: 4px; width: 16px
 
 .italic_bold { font-weight: bold; font-style: italic; }
 
-@media screen and (max-width: 32.4375em) { .reveal { height: auto; min-height: auto; } }
+@media screen and (max-width: 63.9375em) { .reveal { height: auto; min-height: auto; } }
