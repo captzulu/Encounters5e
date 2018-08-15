@@ -9,7 +9,7 @@ function boldDCs($string) {
 }
 
 function boldActionType($string) {
-    return preg_replace("(bonus action|reactions|reaction|actions|action)", "<b style='text-transform:capitalize;'>$0</b>", $string);
+    return preg_replace("( bonus action | reactions | reaction | actions | action )", "<b style='text-transform:capitalize;'>$0</b>", $string);
 }
 
 function boldToHit($string) {
@@ -20,14 +20,18 @@ function boldLvl($string) {
     return preg_replace("([0-9]+(th|nd|rd|rst) level)", "<b style='text-transform:capitalize;'>$0</b>", $string);
 }
 
+function boldAdvantage($string) {
+    return preg_replace("( advantage | disadvantage )", "<b style='text-transform:capitalize;'>$0</b>", $string);
+}
+
 function dropDownConditions($string) {
     $results = CallJSON("Conditions");
     $arrayConditions = [];
     $arrayConditionsDesc = [];
-    foreach ($results as $key => $condition) {
+    foreach($results as $key => $condition) {
         $arrayConditions[] = "(" . strtolower($condition["name"]) . ")";
         $finalDesc = "";
-        foreach ($condition["desc"] as $desc) {
+        foreach($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
         $arrayConditionsDesc[] = "<a class='condition' data-open='cond_" . strtolower($condition["name"]) . "'>{$condition["name"]}</a>";
@@ -41,8 +45,8 @@ function markSpells($string) {
     //first check if the string contains the word "Spellcasting" so we dont search for spells in a useless string
     $results = CallJSON("Spells");
     $arraySpells = [];
-    foreach ($results as $key => $spell) {
-        $arraySpells[] = "(" . strtolower($spell["name"]) . ")";
+    foreach($results as $key => $spell) {
+        $arraySpells[] = "( " . strtolower($spell["name"]) . " )";
     }
     //var_dump($arrayConditions);
     return preg_replace($arraySpells, "<a class='spell'>$0</a>", $string);
@@ -54,15 +58,16 @@ function boldInDesc($string) {
     $string = boldActionType($string);
     $string = boldToHit($string);
     $string = boldLvl($string);
+    $string = boldAdvantage($string);
     $string = dropDownConditions($string);
     return $string;
 }
 
 function printConditionsDropDowns() {
     $results = CallJSON("Conditions");
-    foreach ($results as $key => $condition) {
+    foreach($results as $key => $condition) {
         $finalDesc = "";
-        foreach ($condition["desc"] as $desc) {
+        foreach($condition["desc"] as $desc) {
             $finalDesc .= "<li>" . trim($desc, '• ') . "</li>";
         }
         echo "<div class='reveal' id='cond_" . strtolower($condition["name"]) . "' data-reveal>
