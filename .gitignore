@@ -2,3 +2,4 @@
 bower_components
 includes/connectionInfo.php
 error_log
+node_modules/gulp-sass/node_modules/node-sass/vendor
