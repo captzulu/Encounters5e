@@ -22,11 +22,11 @@ $result = $result["content"];
         </div>
     </div>
     <div class="card-section ">
-        <div class="text-center tags">
+        <div class="text-center tags classes">
             <?php
-            foreach ($result["classes"] as $key => $class) {
+            foreach($result["classes"] as $key => $class) {
                 ?>
-                <span class = "class label"><?= $class["name"]; ?></span>
+                <span class = "label"><?= $class["name"]; ?></span>
                 <?php
             }
             ?>

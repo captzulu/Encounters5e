@@ -38,7 +38,7 @@ $results = getTable("spell", null, "level, name");
 <script src="js/listFunctions.js" type="text/javascript"></script>
 <script >
     $(function () {
-        var spellList = listJS.init("spellList", ['name', 'class']);
+        var spellList = listJS.init("spellList", ['name', 'classes']);
     });
 </script>
 <?php

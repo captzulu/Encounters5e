@@ -1,5 +1,5 @@
 var listJS = {
-    init: function (id,arrayClasses) {
+    init: function (id, arrayClasses) {
         var isMobile = $("[data-open='menuMobileReveal']:visible").length !== 0;
         var options = {
             valueNames: arrayClasses,
@@ -9,6 +9,26 @@ var listJS = {
 
         var list = new List(id, options);
         return list;
+    },
+    listeners: function (slider, list) {
+        $(slider).on("changed.zf.slider", function () {
+            var lowCR = $("#lowCR").val();
+            var highCR = $("#highCR").val();
+            list.filter(function (item) {
+                if (item.values().challenge_rating_sort >= parseInt(lowCR) && item.values().challenge_rating_sort <= parseInt(highCR)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+    },
+    onMoveLowHandle: function () {
+
+    },
+    onMoveHighHandle: function () {
+
     }
 };
 

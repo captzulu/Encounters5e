@@ -16,11 +16,13 @@ $result = $result["content"];
     </div>
     <div class="card-section ">
         <div class=" text-center tags">
-            <span class="challenge_rating label">CR <?= convertCR($result["challenge_rating"]); ?></span>
+            <span class="label">CR <span class="challenge_rating"><?= convertCR($result["challenge_rating"]); ?></span> 
+                <span class="challenge_rating_sort" style="display:none;"><?= $result["challenge_rating"]; ?></span>
+            </span>
             <span class="size label"><?= ucfirst($result["size"]); ?></span>
             <span class="type label"><?= ucfirst($result["type"]); ?> 
                 <?php
-                if (!empty($result["subtype"])) {
+                if(!empty($result["subtype"])) {
                     echo " (" . ucfirst($result["subtype"]) . ")";
                 }
                 ?>

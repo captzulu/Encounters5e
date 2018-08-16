@@ -1,0 +1,27 @@
+.sort{
+    position: relative;
+    background-color: $charcoal;
+    font-size: 1.3rem;
+    border-radius: 4px;
+    margin-top: 1px;
+    padding-right:1em;
+    padding-left:0.8em;
+    padding-top:0.4em;
+    padding-bottom: 0.4em;
+    cursor:pointer;
+    &.asc::after{
+        content:"▲";
+        font-size:11px;
+        position: absolute;
+        right: 6px;
+        top:12px;
+    }
+    &.desc::after{
+        content:"▼";
+        font-size:11px;
+        position: absolute;
+        right: 6px;
+        top:12px;
+    }
+}
+
