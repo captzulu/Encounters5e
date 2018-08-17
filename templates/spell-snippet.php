@@ -16,9 +16,9 @@ $result = $result["content"];
             <div class="cell small-10"><?= "<b>Duration</b>"; ?></div>
         </div>
         <div class="grid-x text-center">
-            <div class="cell small-4"><?= $result["level"]; ?></div>
-            <div class="cell small-10"><?= $result["casting_time"]; ?></div>
-            <div class="cell small-10"><?= $result["duration"] === "Instantaneous" ? "Instant" : $result["duration"]; ?></div>
+            <div class="cell small-4 level"><?= $result["level"]; ?></div>
+            <div class="cell small-10 casting"><?= $result["casting_time"]; ?></div>
+            <div class="cell small-10 duration"><?= $result["duration"] === "Instantaneous" ? "Instant" : $result["duration"]; ?></div>
         </div>
     </div>
     <div class="card-section ">

@@ -4678,7 +4678,7 @@ svg { vertical-align: text-top; margin-right: 3px; margin-left: 4px; width: 16px
 
 .card { border: 2px #333333 solid; border-radius: 5px; }
 
-.tags > * { border-radius: 5px; }
+.label { border-radius: 5px; background-color: #333333; }
 
 .italic_bold { font-weight: bold; font-style: italic; }
 

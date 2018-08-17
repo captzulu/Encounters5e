@@ -89,8 +89,10 @@ svg{
     border-radius: 5px;
 }
 
-.tags>*{
+.label{
     border-radius: 5px;
+    //maybe remove
+    background-color: $charcoal;
 }
 
 .italic_bold{

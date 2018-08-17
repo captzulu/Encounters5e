@@ -11,21 +11,30 @@ var listJS = {
         var list = new List(id, options);
         return list;
     },
-    listeners: function (slider, list) {
+    listeners: function (slider, list, type) {
         $(slider).on("changed.zf.slider", function () {
-            var lowCR = $("#lowCR").val();
-            var highCR = $("#highCR").removeClass("small").val();
-            if (highCR === "18") {
-                $("#highCR").val("18+").addClass("small");
-            }
-            list.filter(function (item) {
-                if (item.values().challenge_rating_sort >= parseInt(lowCR) && (item.values().challenge_rating_sort <= parseInt(highCR) || highCR === "18")) {
-                    return true;
-                } else {
-                    return false;
+            var low = $("#lowVal").val();
+            var high = $("#highVal").removeClass("small").val();
+            if (type === "monster") {
+                if (high === "18") {
+                    $("#highVal").val("18+").addClass("small");
                 }
-            });
-
+                list.filter(function (item) {
+                    if (item.values().challenge_rating_sort >= parseInt(low) && (item.values().challenge_rating_sort <= parseInt(high) || high === "18")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            } else {
+                list.filter(function (item) {
+                    if (item.values().level >= parseInt(low) && item.values().level <= parseInt(high)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
         });
         list.on("filterStart", function () {
             $("[data-sort]").each(function (i, el) {

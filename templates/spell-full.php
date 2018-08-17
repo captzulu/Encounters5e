@@ -1,6 +1,7 @@
 <?php
 $idMonster = $result["idSpell"];
 $result = $result["content"];
+//var_dump($result);
 ?>
 <div class="card fullCard">
     <div class="card-divider text-center">
@@ -18,6 +19,7 @@ $result = $result["content"];
         printSpellDescription($result);
         ?>
     </div>
+    <?php printConditionsDropDowns(); ?>
 </div>
 
 
