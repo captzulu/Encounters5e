@@ -1,4 +1,5 @@
 var listJS = {
+    sortingObj: null,
     init: function (id, arrayClasses) {
         var isMobile = $("[data-open='menuMobileReveal']:visible").length !== 0;
         var options = {
@@ -13,22 +14,31 @@ var listJS = {
     listeners: function (slider, list) {
         $(slider).on("changed.zf.slider", function () {
             var lowCR = $("#lowCR").val();
-            var highCR = $("#highCR").val();
+            var highCR = $("#highCR").removeClass("small").val();
+            if (highCR === "18") {
+                $("#highCR").val("18+").addClass("small");
+            }
             list.filter(function (item) {
-                if (item.values().challenge_rating_sort >= parseInt(lowCR) && item.values().challenge_rating_sort <= parseInt(highCR)) {
+                if (item.values().challenge_rating_sort >= parseInt(lowCR) && (item.values().challenge_rating_sort <= parseInt(highCR) || highCR === "18")) {
                     return true;
                 } else {
                     return false;
                 }
             });
+
         });
-
-    },
-    onMoveLowHandle: function () {
-
-    },
-    onMoveHighHandle: function () {
-
+        list.on("filterStart", function () {
+            $("[data-sort]").each(function (i, el) {
+                if ($(el).hasClass("asc") || $(el).hasClass("desc")) {
+                    listJS.sortingObj = {name: $(el).attr("data-sort"), order: ($(el).hasClass("asc") ? "asc" : "desc")};
+                }
+            });
+        });
+        list.on("filterComplete", function () {
+            if (listJS.sortingObj !== null) {
+                list.sort(listJS.sortingObj.name, {order: listJS.sortingObj.order});
+            }
+        });
     }
 };
 

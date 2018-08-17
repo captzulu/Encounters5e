@@ -25,3 +25,54 @@
     }
 }
 
+.searchDiv{
+    margin-bottom: 1rem;
+    .pagination,.search{
+        margin-bottom: 0;
+    }
+    .page{
+        background-color: $charcoal;
+        color:white;
+        border-radius:3px;
+        &:hover{
+            background-color: $charcoal-light;
+        }
+
+    }
+    .pagination{
+        padding-top:0.5rem;
+        li{
+            display:inline-block !important;
+            &.disabled{
+                cursor: initial;
+                padding-top:0;
+                a{
+                    cursor: default;
+                    &:hover{
+                        background-color: $charcoal;
+                    }
+                }
+            }    
+        }
+    }
+    .search{
+        border-radius: 7px;
+        border:2px $charcoal solid;
+    }
+    @include breakpoint(medium down) {
+        .search{
+            height: 3rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+        }
+        li{
+            margin-right: 0.3625rem;
+            font-size:1.1rem;
+            font-weight: bold;
+            .page{
+                padding: 0.5875rem 1.2rem;
+            }
+        }
+    }
+}
+

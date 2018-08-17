@@ -5,14 +5,42 @@
 
 .sort.desc::after { content: "▼"; font-size: 11px; position: absolute; right: 6px; top: 12px; }
 
-.slider-handle { background-color: #333333; width: 1.7rem; height: 1.7rem; border-radius: 4px; }
+.searchDiv { margin-bottom: 1rem; }
+
+.searchDiv .pagination, .searchDiv .search { margin-bottom: 0; }
+
+.searchDiv .page { background-color: #333333; color: white; border-radius: 3px; }
+
+.searchDiv .page:hover { background-color: #575656; }
+
+.searchDiv .pagination { padding-top: 0.5rem; }
+
+.searchDiv .pagination li { display: inline-block !important; }
+
+.searchDiv .pagination li.disabled { cursor: initial; padding-top: 0; }
+
+.searchDiv .pagination li.disabled a { cursor: default; }
+
+.searchDiv .pagination li.disabled a:hover { background-color: #333333; }
+
+.searchDiv .search { border-radius: 7px; border: 2px #333333 solid; }
+
+@media screen and (max-width: 63.9375em) { .searchDiv .search { height: 3rem; margin-bottom: 0.4rem; font-size: 1.2rem; }
+  .searchDiv li { margin-right: 0.3625rem; font-size: 1.1rem; font-weight: bold; }
+  .searchDiv li .page { padding: 0.5875rem 1.2rem; } }
+
+.slider-handle { background-color: #333333; width: 2.1rem; height: 2.1rem; border-radius: 4px; }
 
 .slider-handle:hover { background-color: #575656; }
 
 .slider-handle input { background-color: transparent; color: white; border: 0; width: 100%; height: 100%; text-align: center; padding-top: 4px; font-weight: bold; cursor: pointer; }
 
-.slider { margin-top: 0.8rem; }
+.slider-handle input.small { font-size: 0.95rem; }
+
+.slider { margin-top: 0.8rem; background-color: #dbdbdb; border-radius: 4px; }
 
 .slider_label { font-size: 1rem; color: #575656; font-weight: bold; }
 
 @media screen and (min-width: 50em) { .slider_label { margin-top: -1.6rem; } }
+
+.slider-fill { background-color: #cacaca; }

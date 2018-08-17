@@ -53,60 +53,20 @@
 
 @import "includes/menu";
 
-.searchDiv{
-    margin-bottom: 1rem;
-    .pagination,.search{
-        margin-bottom: 0;
-    }
-    .page{
-        background-color: $charcoal;
-        color:white;
-        border-radius:3px;
-        &:hover{
-            background-color: $charcoal-light;
-        }
 
-    }
-    .pagination li{
-        display:inline-block !important;
-        &.disabled{
-            cursor: initial;
-            a{
-                cursor: default;
-                &:hover{
-                    background-color: $charcoal;
-                }
-            }
-        }    
-    }
-    @include breakpoint(medium down) {
-        .search{
-            height: 3rem;
-            margin-bottom: 0.4rem;
-            font-size: 1.2rem;
-        }
-        li{
-            margin-right: 0.3625rem;
-            font-size:1.1rem;
-            font-weight: bold;
-            .page{
-                padding: 0.5875rem 1.2rem;
-            }
-        }
-    }
-}
 
 .background{
     padding-bottom:1rem;
-    $big_lines:#a6d1f0;
-    $background:smart-scale($big_lines, 75%, 100%);
+    $big_lines:$medium-gray;
+    $background:smart-scale($big_lines, 80%, 100%);
+    $square_size:65px;
 
     background-color:$background;
     background-image: linear-gradient($big_lines 2px, transparent 2px),
         linear-gradient(90deg, $big_lines 2px, transparent 2px);
     //linear-gradient($small_lines 1px, transparent 1px),
     //linear-gradient(90deg, $small_lines 1px, transparent 1px);
-    background-size:50px 50px, 50px 50px, 20px 20px, 20px 20px;
+    background-size:$square_size $square_size, $square_size $square_size;
     background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
 }
 svg{
@@ -125,7 +85,7 @@ svg{
     }
 }
 .card{
-    border: 1px solid $medium-gray;
+    border:2px $charcoal solid;
     border-radius: 5px;
 }
 

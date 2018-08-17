@@ -2,7 +2,7 @@
 @import "includes/listJS";
 .slider-handle {
     background-color: $charcoal;
-    $width:1.7rem;
+    $width:2.1rem;
     width:$width;
     height:$width;
     border-radius:4px;
@@ -19,12 +19,16 @@
         padding-top: 4px;
         font-weight: bold;
         cursor:pointer;
-
+        &.small{
+            font-size: 0.95rem;
+        }
     }
 }
 
 .slider{
     margin-top:0.8rem;
+    background-color: smart-scale($light-gray, 5%, 10%);
+    border-radius: 4px;
 }
 
 .slider_label{
@@ -36,3 +40,6 @@
     }
 }
 
+.slider-fill{
+    background-color: $medium-gray;
+}

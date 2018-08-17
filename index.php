@@ -22,7 +22,7 @@ $results = getTable("monster");
             </div>
             <div class="cell medium-12">
                 <label class='slider_label'>Challenge Rating Filter</label>
-                <div class="slider" data-slider data-double-sided='true' data-initial-start="0" data-initial-end="30" data-start="0" data-end="30" data-changed-delay='250'>
+                <div class="slider" data-slider data-double-sided='true' data-initial-start="0" data-initial-end="18" data-start="0" data-end="18" data-changed-delay='250'>
                     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="lowCR"><input id='lowCR' readonly="" /></span>
                     <span class="slider-fill" data-slider-fill></span>
                     <span class="slider-handle" data-slider-handle role="slider" tabindex="1" aria-controls="highCR"><input id='highCR' readonly=""/></span>
@@ -59,6 +59,8 @@ $results = getTable("monster");
     $(function () {
         var monsterList = listJS.init("monsterList", ['name', 'challenge_rating', 'challenge_rating_sort', 'size', 'type']);
         listJS.listeners($(".slider"), monsterList);
+        //makes it so we see the arrow pointing up
+        $("[data-sort='name']").click();
     });
 </script>
 <?php
